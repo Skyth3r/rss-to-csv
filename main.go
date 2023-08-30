@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 
@@ -15,16 +16,22 @@ func main() {
 		log.Fatalf("Error getting feed: %v", err)
 	}
 
-	fmt.Printf("RSS feed title: %s\n", feed.Title)
-	fmt.Printf("RSS feed description: %s\n", feed.Description)
-	fmt.Printf("RSS feed link: %s\n", feed.Link)
-	fmt.Printf("RSS feedlink: %s\n", feed.FeedLink)
-	fmt.Printf("RSS last updated on: %s\n", feed.Updated)
-	fmt.Printf("-----------------------------------------------------\n")
-	for index, feedItem := range feed.Items {
-		fmt.Printf("Item %d\n", index+1)
-		fmt.Printf("Link: %s\n", feedItem.Title)
-		fmt.Printf("Published date: %s\n", feedItem.Published)
-		fmt.Printf("-----------------------------------------------------\n")
+	jsonData, err := json.Marshal(feed)
+	if err != nil {
+		log.Fatalf("Error marshaling data to JSON: %v", err)
 	}
+	fmt.Println("Struct as JSON: ", string(jsonData))
+
+	// fmt.Printf("RSS feed title: %s\n", feed.Title)
+	// fmt.Printf("RSS feed description: %s\n", feed.Description)
+	// fmt.Printf("RSS feed link: %s\n", feed.Link)
+	// fmt.Printf("RSS feedlink: %s\n", feed.FeedLink)
+	// fmt.Printf("RSS last updated on: %s\n", feed.Updated)
+	// fmt.Printf("-----------------------------------------------------\n")
+	// for index, feedItem := range feed.Items {
+	// 	fmt.Printf("Item %d\n", index+1)
+	// 	fmt.Printf("Link: %s\n", feedItem.Title)
+	// 	fmt.Printf("Published date: %s\n", feedItem.Published)
+	// 	fmt.Printf("-----------------------------------------------------\n")
+	// }
 }
