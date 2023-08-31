@@ -2,7 +2,10 @@ module github.com/Skyth3r/rss-to-csv
 
 go 1.20
 
-require github.com/mmcdole/gofeed v1.2.1
+require (
+	github.com/mmcdole/gofeed v1.2.1
+	github.com/mohae/struct2csv v0.0.0-20151122200941-e72239694eae
+)
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.0 // indirect
